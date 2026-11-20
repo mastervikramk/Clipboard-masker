@@ -1,0 +1,55 @@
+/**
+ * electron-builder configuration for Clipboard Masker
+ */
+{
+  "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
+  "appId": "com.clipboardmasker.app",
+  "productName": "Clipboard Masker",
+  "electronVersion": "33.4.11",
+  "copyright": "Copyright © 2026 Clipboard Masker Contributors",
+  "directories": {
+    "output": "release"
+  },
+  "files": [
+    "dist/**/*",
+    "dist-electron/**/*",
+    "build/**/*"
+  ],
+  "extraResources": [
+    {
+      "from": "resources/models",
+      "to": "models",
+      "filter": ["**/*"]
+    },
+    {
+      "from": "resources/engine",
+      "to": "engine",
+      "filter": ["**/*", "!*.cs"]
+    }
+  ],
+  "extraMetadata": {
+    "main": "dist-electron/main/index.js"
+  },
+  "win": {
+    "icon": "build/icon.ico",
+    "target": [
+      {
+        "target": "nsis",
+        "arch": ["x64"]
+      },
+      {
+        "target": "portable",
+        "arch": ["x64"]
+      }
+    ]
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "Clipboard Masker",
+    "installerIcon": "build/icon.ico",
+    "uninstallerIcon": "build/icon.ico"
+  }
+}
