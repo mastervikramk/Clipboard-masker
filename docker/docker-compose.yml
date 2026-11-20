@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  presidio-gliner:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: clipboard-masker-presidio:latest
+    container_name: clipboard-masker-presidio
+    restart: unless-stopped
+    ports:
+      - "8125:8125"
+    environment:
+      - PORT=8125
+      - HOST=0.0.0.0
+      - GLINER_MODEL_NAME=urchade/gliner_small-v2.1
+      - GLINER_THRESHOLD=0.4
+      - DEVICE=cpu
+      - HF_HOME=/models_cache
+    volumes:
+      # Persist model weights on host so they are downloaded only once
+      - presidio_model_cache:/models_cache
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8125/healthz"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          memory: 2048M
+
+volumes:
+  presidio_model_cache:
+    name: clipboard_masker_models
