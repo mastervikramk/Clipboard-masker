@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing & Coverage
+coverage/
+.pytest_cache/
+__pycache__/
+*.pyc
+
+# Production Builds
+dist/
+dist-electron/
+release/
+out/
+/build/
+!packages/desktop/build/
+
+# Local Storage & Keys
+.clipboard-masker/
+*.enc
+.master.key
+models_cache/
+packages/desktop/resources/models/
+resources/models/
+packages/desktop/resources/engine/worker/
+resources/engine/worker/
+*.gguf
+
+# Environment & Local Secrets
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS metadata
+.DS_Store
+Thumbs.db
